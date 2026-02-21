@@ -6,7 +6,7 @@ print(f"Using device: {DEVICE}")
 
 # Data configuration
 data = {
-    'batch_size': 64,
+    'batch_size': 256,  # Increased from 128 to reduce iterations per epoch
     'shuffle': True,
     'num_workers': 0  # Set to 0 for Windows, 2-4 for Linux/Mac
 }
@@ -22,8 +22,8 @@ model = {
 
 # Training configuration
 train = {
-    'l_r': 0.005,
-    'epochs': 40,
+    'l_r': 0.001,
+    'epochs': 10,  # Reduced from 40(SimpleNN) to 20(CNN) for CPU training
     'log_interval': 100,  
     'weight_decay': 1e-4
 }

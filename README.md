@@ -25,25 +25,34 @@ MNIST/
   src/
     config.py          # Hyperparameters and device config
     data_loader.py     # MNIST download + dataloaders
-    model.py           # SimpleNN architecture
-    train.py           # Training + evaluation + save outputs
+    model.py           # CNN architecture
+    train.py           # Training + evaluation + metrics + graphs
   data/                # Downloaded MNIST dataset
   models/
-    mnist_model.pth    # Trained model weights
+    mnist_cnn.pth      # Trained model weights
   results/
-    first_prediction.png
+    loss_graph.png         # Training vs validation loss graph
+    training_metrics.json  # Training history and accuracy
+    sec_prediction.png     # Sample prediction visualization
   predict_draw.py      # Live draw-and-predict app
   README.md
 ```
 
 ## Model Architecture
 
-`SimpleNN` from `src/model.py`:
+`CNN` from `src/model.py`:
 
-- Input: `28x28` grayscale image flattened to `784`
-- Hidden Layer 1: `784 -> 128` + BatchNorm + ReLU + Dropout
-- Hidden Layer 2: `128 -> 64` + BatchNorm + ReLU + Dropout
-- Output Layer: `64 -> 10` logits
+- Input: `28x28` grayscale image
+- Convolutional layers with pooling
+- Output: `10` class logits
+
+## Training Output
+
+After running `python -m src.train`, you'll get:
+
+- **loss_graph.png**: Shows training vs validation loss across epochs
+- **training_metrics.json**: Contains final accuracy, loss history, hyperparameters
+- **sec_prediction.png**: Visualization of first test sample prediction
 
 ## Setup
 
@@ -52,7 +61,7 @@ MNIST/
 3. Install dependencies
 
 ```bash
-pip install torch torchvision numpy opencv-python matplotlib
+pip install -r requirements.txt
 ```
 
 ## Training
@@ -66,10 +75,13 @@ python -m src.train
 This will:
 
 - Download MNIST (if not already present) into `data/`
-- Train for configured epochs
-- Evaluate on test set
-- Save model to `models/mnist_model.pth`
-- Save sample prediction image to `results/first_prediction.png`
+- Train for configured epochs with loss tracking
+- Track both training and validation loss each epoch
+- Evaluate on test set and report accuracy
+- Save model to `models/mnist_cnn.pth`
+- Generate **loss_graph.png** showing training progress
+- Export **training_metrics.json** with full training history
+- Save sample prediction image to `results/sec_prediction.png`
 
 ## Live Prediction (Draw Your Own Digit)
 

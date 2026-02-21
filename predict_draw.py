@@ -5,14 +5,14 @@ import cv2
 import numpy as np
 import torch
 
-from src.model import SimpleNN
+from src.model import CNN
 from src.config import DEVICE
 from src.data_loader import PROJECT_ROOT 
 
 
 # Load model
-MODEL_PATH = PROJECT_ROOT / "models" / "mnist_model.pth"
-model = SimpleNN().to(DEVICE)
+MODEL_PATH = PROJECT_ROOT / "models" / "mnist_cnn.pth"
+model = CNN().to(DEVICE)
 model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
 model.eval()
 print(f"✅ Model loaded: {MODEL_PATH} | Device: {DEVICE}")
