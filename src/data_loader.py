@@ -1,7 +1,9 @@
-from torchvision import datasets, transforms
-from torch.utils.data import DataLoader
 from pathlib import Path
-from .config import data, DEVICE
+
+from torch.utils.data import DataLoader
+from torchvision import datasets, transforms
+
+from .config import DEVICE, data
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = PROJECT_ROOT / "data"

@@ -1,6 +1,4 @@
-import pytest
 from app.detect_fields import extract_fields
-
 
 INVOICE_TEXT = """
 ABC Electronics Pvt Ltd

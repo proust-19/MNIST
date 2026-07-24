@@ -1,9 +1,10 @@
-import torch
-import torch.onnx
 from pathlib import Path
 
-from .model import CNN
+import torch
+import torch.onnx
+
 from .config import DEVICE
+from .model import CNN
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 MODELS_DIR = PROJECT_ROOT / "models"

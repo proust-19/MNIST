@@ -1,10 +1,12 @@
-import torch.nn as nn
 import torch.nn.functional as F
+from torch import nn
+
 from .config import model as m
+
 
 class SimpleNN(nn.Module):
   def __init__(self):
-    super(SimpleNN, self).__init__()
+    super().__init__()
     self.fc1 = nn.Linear(m['input_size'], m['h_size'])
     self.bn1 = nn.BatchNorm1d(m['h_size'])
     self.dropout1 = nn.Dropout(m['dropout_rate'])
@@ -27,7 +29,7 @@ class SimpleNN(nn.Module):
 
 class CNN(nn.Module):
   def __init__(self):
-    super (CNN, self).__init__()
+    super ().__init__()
     self.conv1 = nn.Conv2d(1, 32, kernel_size=3, padding=1, bias=False)
     self.bn1 = nn.BatchNorm2d(32)
     self.pool = nn.MaxPool2d(2, 2)

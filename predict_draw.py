@@ -1,14 +1,12 @@
 import time
-from pathlib import Path
 
 import cv2
 import numpy as np
 import torch
 
-from src.model import CNN
 from src.config import DEVICE
-from src.data_loader import PROJECT_ROOT 
-
+from src.data_loader import PROJECT_ROOT
+from src.model import CNN
 
 # Load model
 MODEL_PATH = PROJECT_ROOT / "models" / "mnist_cnn.pth"
@@ -33,8 +31,8 @@ def center_and_resize(canvas_280: np.ndarray) -> np.ndarray:
 
     h0, w0 = cropped.shape
     scale = 20.0 / max(h0, w0)
-    new_w = max(1, int(round(w0 * scale)))
-    new_h = max(1, int(round(h0 * scale)))
+    new_w = max(1, round(w0 * scale))
+    new_h = max(1, round(h0 * scale))
     resized = cv2.resize(cropped, (new_w, new_h), interpolation=cv2.INTER_AREA)
 
     out = np.zeros((28, 28), dtype=np.uint8)

@@ -1,13 +1,12 @@
 import io
 import time
-from pathlib import Path
 
 import numpy as np
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from PIL import Image
 
-from src.inference import ONNXPredictor, DEFAULT_ONNX
 from src.export import MODELS_DIR
+from src.inference import DEFAULT_ONNX, ONNXPredictor
 
 app = FastAPI(title="MNIST Inference Service", version="1.0.0")
 

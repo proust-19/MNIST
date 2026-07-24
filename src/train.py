@@ -1,15 +1,17 @@
 import os
-import torch
-import torch.nn as nn
-import torch.optim as optim
+
 import matplotlib
+import torch
+from torch import nn, optim
+
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import time
 import json
+import time
+
+import matplotlib.pyplot as plt
 import numpy as np
 
-from .config import train, DEVICE
+from .config import DEVICE, train
 from .data_loader import PROJECT_ROOT, get_mnist_loaders
 from .model import CNN
 

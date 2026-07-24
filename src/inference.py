@@ -1,6 +1,7 @@
+from pathlib import Path
+
 import numpy as np
 import onnxruntime as ort
-from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ONNX = PROJECT_ROOT / "models" / "mnist_model.onnx"

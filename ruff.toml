@@ -1,0 +1,2 @@
+[lint]
+per-file-ignores = {"api/main.py" = ["B008"], "app/main.py" = ["B008"]}

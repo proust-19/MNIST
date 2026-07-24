@@ -1,5 +1,4 @@
-from pathlib import Path
-from src.export import export_to_onnx, MODELS_DIR
+from src.export import MODELS_DIR, export_to_onnx
 
 
 def test_export_creates_onnx():
