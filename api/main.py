@@ -1,5 +1,6 @@
 import io
 import time
+from contextlib import asynccontextmanager
 
 import numpy as np
 from fastapi import FastAPI, File, HTTPException, UploadFile
@@ -8,15 +9,17 @@ from PIL import Image
 from src.export import MODELS_DIR
 from src.inference import DEFAULT_ONNX, ONNXPredictor
 
-app = FastAPI(title="MNIST Inference Service", version="1.0.0")
-
 predictor: ONNXPredictor | None = None
 
 
-@app.on_event("startup")
-def load_model():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     global predictor
     predictor = ONNXPredictor(DEFAULT_ONNX)
+    yield
+
+
+app = FastAPI(title="MNIST Inference Service", version="1.0.0", lifespan=lifespan)
 
 
 @app.get("/health")
